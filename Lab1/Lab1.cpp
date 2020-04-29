@@ -9,8 +9,8 @@ using namespace std;
 vector<string> split(string str, int target_length)
 {
   const char* c_str = str.c_str();
-  char* c_left = (char*)calloc(target_length + 1, sizeof(char));
-  char* c_right = (char*)calloc(str.size() - target_length + 1, sizeof(char));
+  char* c_left = new char[target_length + 1]();
+  char* c_right = new char[str.size() - target_length + 1]();
   for (int i = 0; i < target_length; i++)
   {
     c_left[i] = c_str[i];

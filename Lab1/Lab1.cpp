@@ -8,24 +8,13 @@ using namespace std;
 
 vector<string> split(string str, int target_length)
 {
-  const char* c_str = str.c_str();
-  char* c_left = new char[target_length + 1]();
-  char* c_right = new char[str.size() - target_length + 1]();
-  for (int i = 0; i < target_length; i++)
-  {
-    c_left[i] = c_str[i];
-  }
-  for (int i = 0; i < str.size() - target_length; i++)
-  {
-    c_right[i] = c_str[target_length + i];
-  }
-  string left(c_left);
-  string right(c_right);
+  string left = string(str, 0, target_length);
+  string right = string(str, target_length, str.size() - target_length);
   vector<string> res = { left };
   if (right.size() >= target_length)
   {
     vector<string> res1 = split(right, target_length);
-    for (string i : res1)
+    for (auto &i : res1)
     {
       res.push_back(i);
     }
@@ -53,7 +42,7 @@ vector<string> read(ifstream& input, int target_length)
         if (word.size() >= target_length)
         {
           vector<string> elem = split(word, target_length);
-          for (string var : elem)
+          for (auto &var : elem)
           {
             text.push_back(var);
           }

@@ -83,6 +83,7 @@
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Trace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Lab2.h" />
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
+    <ClInclude Include="Trace.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

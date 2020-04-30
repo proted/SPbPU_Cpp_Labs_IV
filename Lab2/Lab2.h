@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_Lab2.h"
 #include "Arrow.h"
+#include "Trace.h"
 
 class Lab2 : public QMainWindow
 {
@@ -19,5 +20,5 @@ protected:
 private:
     int timerID;
     Arrow arrow;
-    Arrow trace[1000];
+    Trace trace;
 };

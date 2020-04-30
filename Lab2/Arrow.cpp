@@ -11,6 +11,13 @@ Arrow::~Arrow()
 {
 
 }
+Arrow::Arrow(const Arrow& arr)
+{
+    x_pos = arr.x_pos;
+    y_pos = arr.y_pos;
+    angle = arr.angle;
+    length = arr.length;
+}
 
 void Arrow::move(double dR)
 {

@@ -9,12 +9,9 @@
 Lab2::Lab2(QWidget *parent)
     : QMainWindow(parent)
 {
-    timerID = startTimer(15);
+    timerID = startTimer(5);
     arrow = Arrow();
-    for (int i = 0; i < 10; i++)
-    {
-        trace[i] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
-    }
+    trace = Trace(arrow);
 }
 
 void Lab2::keyPressEvent(QKeyEvent* e)
@@ -22,46 +19,23 @@ void Lab2::keyPressEvent(QKeyEvent* e)
     switch (e->key())
     {
         case Qt::Key_Up:
-        for (int i = 99; i > 0; i--)
-        {
-            trace[i].~Arrow();
-            trace[i] = Arrow(trace[i - 1].getX(), trace[i - 1].getY(), trace[i - 1].getAngle());
-        }
-        trace[0].~Arrow();
-        trace[0] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
-        arrow.move(10);
+        trace.updateTrace(arrow);
+        arrow.move(15);
         break;
         case Qt::Key_Down:
-        for (int i = 99; i > 0; i--)
-        {
-            trace[i].~Arrow();
-            trace[i] = Arrow(trace[i - 1].getX(), trace[i - 1].getY(), trace[i - 1].getAngle());
-        }
-        trace[0].~Arrow();
-        trace[0] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
-        arrow.move(-10);
+        trace.updateTrace(arrow);
+        arrow.move(-15);
         break;
         case Qt::Key_Left:
-        for (int i = 99; i > 0; i--)
-        {
-            trace[i].~Arrow();
-            trace[i] = Arrow(trace[i - 1].getX(), trace[i - 1].getY(), trace[i - 1].getAngle());
-        }
-        trace[0].~Arrow();
-        trace[0] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
-        arrow.turn(- PI / 180);
+        trace.updateTrace(arrow);
+        arrow.turn(- PI / 90);
         break;
         case Qt::Key_Right:
-        for (int i = 99; i > 0; i--)
-        {
-            trace[i].~Arrow();
-            trace[i] = Arrow(trace[i - 1].getX(), trace[i - 1].getY(), trace[i - 1].getAngle());
-        }
-        trace[0].~Arrow();
-        trace[0] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
-        arrow.turn(PI / 180);
+        trace.updateTrace(arrow);
+        arrow.turn(PI / 90);
         break;
         case Qt::Key_Escape:
+        trace.updateTrace(arrow);
         arrow.resetState();
         break;
     }
@@ -79,22 +53,16 @@ void Lab2::paintEvent(QPaintEvent* e)
     for (int i = 0; i < 100; i++)
     {
         qp.setOpacity(1.0 / ((double)i + 1.0));
-        x1 = trace[i].getX();
-        y1 = trace[i].getY();
-        x2 = trace[i].getX() + trace[i].getLength() * cos(trace[i].getAngle());
-        y2 = trace[i].getY() + trace[i].getLength() * sin(trace[i].getAngle());
+        x1 = trace.getArrow(i).getX();
+        y1 = trace.getArrow(i).getY();
+        x2 = trace.getArrow(i).getX() + trace.getArrow(i).getLength() * cos(trace.getArrow(i).getAngle());
+        y2 = trace.getArrow(i).getY() + trace.getArrow(i).getLength() * sin(trace.getArrow(i).getAngle());
         qp.drawLine(x1, y1, x2, y2);
     }
 }
 
 void Lab2::timerEvent(QTimerEvent* e)
 {
-    for (int i = 99; i > 0; i--)
-    {
-        trace[i].~Arrow();
-        trace[i] = Arrow(trace[i - 1].getX(), trace[i - 1].getY(), trace[i - 1].getAngle());
-    }
-    trace[0].~Arrow();
-    trace[0] = Arrow(arrow.getX(), arrow.getY(), arrow.getAngle());
+    trace.updateTrace(arrow);
     repaint();
 }

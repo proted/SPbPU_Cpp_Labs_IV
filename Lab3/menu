@@ -1,0 +1,45 @@
+{
+	"scene": 
+	[
+		{
+			"id": 1,
+			"width": 1280,
+			"height": 720,
+			"item": 
+			[
+				{
+					"id": 1,
+					"text": "Next scene",
+					"width": 400,
+					"height": 100,
+					"posX": 640,
+					"posY": 260
+				}, 
+				{
+					"id": 2,
+					"text": "Exit",
+					"width": 400,
+					"height": 100,
+					"posX": 640,
+					"posY": 360
+				}
+			]
+		}, 
+		{
+			"id": 2,
+			"width": 1280,
+			"height": 720,
+			"item": 
+			[
+				{
+					"id": 3,
+					"text": "Previous scene",
+					"width": 200,
+					"height": 200,
+					"posX": 640,
+					"posY": 260
+				}
+			]
+		}
+	]
+}
